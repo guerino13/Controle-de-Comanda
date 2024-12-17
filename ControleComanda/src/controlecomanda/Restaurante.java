@@ -37,14 +37,20 @@ public class Restaurante {
         System.out.println("Informe o numero da mesa do cliente:");
         int numMesa = sc.nextInt();
         
+         if(mesas[numMesa] != null){
+            System.out.println("Mesa ja ocupada. Por favor, informe outra mesa.");
+            numMesa = sc.nextInt();
+        }
+        
         Comanda novaComanda = new Comanda(numMesa, novoCli);
         mesas[numMesa] = novaComanda;
-        
+       
     }
     
     public boolean realizarPedido(){
         
         Scanner sc = new Scanner(System.in);
+        
         System.out.println("Informe o numero da mesa:");
         int numMesa = sc.nextInt();
         
@@ -67,7 +73,8 @@ public class Restaurante {
     
    public void fecharComanda(int numMesa){
        
-       Comanda c = mesas[numMesa];
+      try{
+           Comanda c = mesas[numMesa];
        System.out.println("Numero da mesa: "+numMesa);
       
        System.out.println("\nPedidos realizados: ");
@@ -76,6 +83,14 @@ public class Restaurante {
        }
        
        System.out.println("\nTotal R$: "+c.getValorTotal());
+       
+       this.mesas[numMesa] = null;
+          
+      } catch(NullPointerException err){
+          System.err.println("Comanda ja fechada ou inexistente. Informe outra comanda.");
+      }
+      
+      
        
    }
   
