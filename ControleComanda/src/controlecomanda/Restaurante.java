@@ -2,7 +2,6 @@
 package controlecomanda;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Restaurante {
@@ -37,31 +36,26 @@ public class Restaurante {
         System.out.println("Informe o numero da mesa do cliente:");
         int numMesa = sc.nextInt();
         
-         if(mesas[numMesa] != null){
-            System.out.println("Mesa ja ocupada. Por favor, informe outra mesa.");
-            numMesa = sc.nextInt();
-        }
-        
         Comanda novaComanda = new Comanda(numMesa, novoCli);
         mesas[numMesa] = novaComanda;
-       
+        
     }
     
     public boolean realizarPedido(){
         
         Scanner sc = new Scanner(System.in);
-        
         System.out.println("Informe o numero da mesa:");
         int numMesa = sc.nextInt();
         
         if(numMesa < 0 || numMesa > 9 || mesas[numMesa] == null){
             return false;
         } else{
-            System.out.println("Informe o produto do pedido:");
             //imprimir o menu
              for(int i = 0; i < this.menu.size();i++){
                 System.out.println((i+1)+ " - " +  this.menu.get(i));
             }
+            
+            System.out.println("Informe o produto do pedido:");
             int numProduto = sc.nextInt();
             numProduto--;
             this.mesas[numMesa].anotaPedido(this.menu.get(numProduto));
@@ -71,26 +65,9 @@ public class Restaurante {
         
     }
     
-   public void fecharComanda(int numMesa){
+   public void fecharComanda(){
        
-      try{
-           Comanda c = mesas[numMesa];
-       System.out.println("Numero da mesa: "+numMesa);
-      
-       System.out.println("\nPedidos realizados: ");
-       for(Produto prod : c.getProdutos()){
-           System.out.println(prod.toString());
-       }
        
-       System.out.println("\nTotal R$: "+c.getValorTotal());
-       
-       this.mesas[numMesa] = null;
-          
-      } catch(NullPointerException err){
-          System.err.println("Comanda ja fechada ou inexistente. Informe outra comanda.");
-      }
-      
-      
        
    }
   
