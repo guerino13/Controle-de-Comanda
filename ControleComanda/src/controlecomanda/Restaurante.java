@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -78,7 +79,10 @@ public class Restaurante {
     
    public void fecharComanda(int numMesa){
        
-      try{
+      LocalDateTime fechamento = LocalDateTime.now();
+       
+       
+       try{
            Comanda c = mesas[numMesa];
        System.out.println("Numero da mesa: "+numMesa);
       
@@ -95,10 +99,14 @@ public class Restaurante {
           System.err.println("Comanda ja fechada ou inexistente. Informe outra comanda.");
       }
       
+      File comandaFechada = new File("C:\\Users\\0077784\\Downloads\\.txt" +numMesa);
+      
+      
+      
       
        
    }
-  
+   
        private void carregaProdutoMenu(){
 //       1 - encontrar o arquivo
         File arquivo = new File("C:\\Users\\0077784\\Downloads\\refeicoes_e_bebidas.csv");
@@ -130,11 +138,14 @@ public class Restaurante {
        } catch(IOException err){
            System.out.println("Erro na leitura dos dados!");
        }
-//       3 - ler linhas do arquivo   
+
 
 
 
     }
+       
+    
+       
     
 }
 
