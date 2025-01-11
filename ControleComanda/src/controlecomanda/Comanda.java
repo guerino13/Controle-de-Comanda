@@ -25,6 +25,22 @@ public class Comanda {
         this.produtos.add(novoPedido);
         this.valorTotal += novoPedido.getValorUnit();
     }
+
+    public int getNumMesa() {
+        return numMesa;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(ArrayList<Produto> produtos) {
+        this.produtos = produtos;
+    }
     
     
     
